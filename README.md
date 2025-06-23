@@ -7,29 +7,29 @@ This project covers the step-by-step cleaning and preprocessing of the Titanic d
 ## **Step 1: Import and Explore the Dataset**
 
 We start by loading the dataset and examining its structure.
-
+```
 import pandas as pd
 
 df = pd.read_csv('Titanic-Dataset.csv')
 print(df.head())
 print(df.info())
-
-
-- **Purpose:** Understand the data types, column names, and check for missing values.
+```
+**Purpose:** Understand the data types, column names, and check for missing values.
 
 ---
 
 ## **Step 2: Handle Missing Values**
 
-### **2.1 Check Missing Values**
+### **2.1: Check Missing Values**
+```
 print(df.isnull().sum())
-
+```
 
 **Findings:**
 - `Age` and `Embarked` have missing values.
 - `Cabin` has a large number of missing values.
 
-### **2.2 Fill Missing Values**
+### **2.2: Fill Missing Values**
 
 - **Age:** Fill missing values with the median age.
     ```
@@ -48,19 +48,19 @@ print(df.isnull().sum())
 
 ## **Step 3: Encode Categorical Variables**
 
-### **3.1 Encode 'Sex' Column**
+### **3.1: Encode 'Sex' Column**
 
 Convert 'male' to 0 and 'female' to 1.
-
+```
 df['Sex'] = df['Sex'].map({'male': 0, 'female': 1})
+```
 
-
-### **3.2 One-Hot Encode 'Embarked' Column**
+### **3.2: One-Hot Encode 'Embarked' Column**
 
 Use one-hot encoding for the 'Embarked' column, dropping the first category (`C`) to avoid redundancy.
-
+```
 df = pd.get_dummies(df, columns=['Embarked'], drop_first=True)
-
+```
 
 #### **Embarked Encoding Table**
 
@@ -75,19 +75,19 @@ df = pd.get_dummies(df, columns=['Embarked'], drop_first=True)
 ## **Step 4: Standardize Numerical Features**
 
 Standardize `Age` and `Fare` columns to have mean 0 and standard deviation 1.
-
+```
 from sklearn.preprocessing import StandardScaler
 
 scaler = StandardScaler()
 df[['Age', 'Fare']] = scaler.fit_transform(df[['Age', 'Fare']])
-
+```
 
 ---
 
 ## **Step 5: Visualize Outliers (Optional)**
 
 Boxplots help visualize outliers in `Age` and `Fare`.
-
+```
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -100,7 +100,7 @@ plt.subplot(1, 2, 2)
 sns.boxplot(x=df['Fare'])
 plt.title('Boxplot of Fare')
 plt.show()
-
+```
 
 - Outliers are visible as dots outside the whiskers.
 - For this project, outliers are **kept** in the dataset.
@@ -110,8 +110,9 @@ plt.show()
 ## **Step 6: Save the Cleaned Dataset**
 
 Save the cleaned DataFrame to a CSV file for future use.
-
+```
 df.to_csv('Titanic-Dataset-Cleaned.csv', index=False)
+```
 ---
 
 ## **Summary of Preprocessing Steps**
