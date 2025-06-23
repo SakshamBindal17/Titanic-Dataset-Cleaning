@@ -1,4 +1,5 @@
 # Titanic Dataset: Data Cleaning & Preprocessing
+[Download the Titanic Dataset](https://www.kaggle.com/datasets/yasserh/titanic-dataset)
 
 This project covers the step-by-step cleaning and preprocessing of the Titanic dataset for machine learning tasks. The goal is to prepare the data for further analysis and modeling by handling missing values, encoding categorical features, scaling numerical data, and saving the cleaned dataset.
 
